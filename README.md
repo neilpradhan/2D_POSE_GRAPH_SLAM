@@ -1,1 +1,18 @@
 # 2d_pose_graph_SLAM
+## Abstract:
+Building a good map of an environment has been a long prevalent
+problem in the domain of robotics. Especially in areas where there
+is no access to external referencing systems such as GPS sensors.
+This problem is popularly known as Simultaneous localization and
+mapping problem.
+In this project, I have attempted to study, code and demonstrate
+the working of 2D-pose Graph Simultaneous localization and map-
+ping Optimization on the data sets that are provided by Luca Car-
+lone, Department of Aeronautics and Astronautics, MIT. 
+Moreover, I have not used any external exclusive Graph Slam
+library for implementation. Given that pose graph SLAM can be
+divided into two functional modules namely the front-end which
+comprises converting raw data into graph nodes and edges and
+the back-end which takes the nodes and edges as input to nd
+the optimized poses, this project will only address the back-end
+optimization function.
