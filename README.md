@@ -1,4 +1,11 @@
 # 2d_pose_graph_SLAM
+
+
+## Table of contents
+* [Abstract](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+
 ## Abstract:
 Building a good map of an environment has been a long prevalent
 problem in the domain of robotics. Especially in areas where there
@@ -16,14 +23,6 @@ comprises converting raw data into graph nodes and edges and
 the back-end which takes the nodes and edges as input to find 
 the optimized poses, this project will only address the back-end
 optimization function.
-
-## Table of contents
-* [Abstract](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
-
-## General info
-This project is simple Lorem ipsum dolor generator.
 	
 ## Technologies
 Project is created with:
@@ -33,7 +32,7 @@ Project is created with:
 * Tensorflow
 	
 ## Setup
-To run this project, install it locally using npm:
+To run this project, go to https://lucacarlone.mit.edu/datasets/ download the datasets for 2d pose graph SLAM or if you are using your own datasets, make sure you have them in the same format. You can always change the "" function to have it in your own format
 
 ```
 $ 
