@@ -24,7 +24,7 @@ the back-end which takes the nodes and edges as input to find
 the optimized poses, this project will only address the back-end
 optimization function.
 
-To see the complete report: [Link to Project report](https://github.com/neilpradhan/2d_pose_graph_SLAM/blob/master/Applied_Estimation_Graph_Slam_Project_Report.pdf)
+To see the complete report: [2D pose graph Slam Project report](https://github.com/neilpradhan/2d_pose_graph_SLAM/blob/master/Applied_Estimation_Graph_Slam_Project_Report.pdf)
 	
 ## Technologies
 Project is created with:
