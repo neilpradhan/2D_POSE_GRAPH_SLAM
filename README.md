@@ -37,7 +37,7 @@ Project is created with:
 To run this project, go to https://lucacarlone.mit.edu/datasets/ download the datasets for 2d pose graph SLAM or if you are using your own datasets, make sure you have them in the same format. You can always change the "get_from_dataset" function to have it in your own format
 
 ```
-$ cd .. /2d_pose_graph_SLAM
+$ cd 2d_pose_graph_SLAM
 $ python script.py
 $ python pose_graph_two_d.py
 ```
