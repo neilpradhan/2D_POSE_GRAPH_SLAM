@@ -113,18 +113,6 @@ class graph_slam:
 			dt_ij = x_j[0:2,0]- x_i[0:2,0] ## difference in translation
 
 			dt_ij= np.reshape(dt_ij,(2,1))
-
-
-			# print("R_ij size",np.shape(R_ij))
-			# print("R_i.T size", np.shape(R_i.T))
-			# print("dR_i.T shape",np.shape(dR_i.T))
-			# print("-R_ij.T * R_i.T shape", np.shape(-R_ij.T * R_i.T))
-			# print("R_ij.T * dR_i.T * dt_ij",np.shape(R_ij.T * dR_i.T * dt_ij))
-			# # print("dt_ij", np.shape(dt_ij))			
-			# print("dt_ij", np.shape(dt_ij))
-			# print("R_ij.T @ R_i.T", np.shape(R_ij.T @ R_i.T))
-			# print("np.array([0,0]).T", np.shape(np.array([0,0]).T))			
-			# A_ij =np.concatenate((np.concatenate((-R_ij.T * R_i.T , R_ij.T * dR_i.T * dt_ij),axis=1),np.array([0,0,-1])),axis=0)
 			
 			
 			A_ij = np.vstack((np.hstack((-R_ij.T @ R_i.T , R_ij.T @ dR_i.T @ dt_ij)),np.array([0,0,-1])))
@@ -162,17 +150,7 @@ class graph_slam:
 			p = src_in_H[0]
 			q = src_in_H[1]
 			r = dest_in_H[0]
-			s = dest_in_H[1]
-
-			# print(p,q,r,s)
-			
-
-			# print("src_in_H[0]",src_in_H[0])
-			# print("src_in_H[0]",src_in_H[1])
-			# print("H_ii", np.shape(H_ii))
-			# print("shape 1", np.shape(self.H[src_in_H[0]:src_in_H[1],src_in_H[0]:src_in_H[1]]))
-			# print("my ", np.shape(self.H))
-			# print(src_in_H[0],src_in_H[1])
+			s = dest_in_H[1]		
 
 			self.H[p:q,p:q] +=  H_ii
 			self.H[p:q,r:s] +=  H_ij
@@ -185,40 +163,6 @@ class graph_slam:
 
 			self.b[p:q]   += b_i
 			self.b[r:s]   += b_j
-
-			
-			
-			# print("b_i", b_i)
-			# print()
-
-			# print("b_j",b_j)
-			# print()
-
-			# print("H_ij", H_ij)
-			# print()
-
-
-			# print("H_ji", H_ji)
-			# break
-
-			# print("H_ii",H_ii)
-			# print()
-
-
-			# print("e_ij",e_ij)
-			# print()
-
-			# print("Z_ij",Z_ij)
-			# print()
-			# plt.plot(self.H)
-			# plt.show()
-			# break
-
-			# plt.plot(self.b)
-			# plt.show()
-			# break
-
-
 
 		self.H[0:3,0:3] += np.eye(3) ## fixing only the first index
 
