@@ -43,8 +43,7 @@ class graph_slam:
 				x,y,yaw = numbers[1:4]
 				pose = np.array([[x,y,yaw]])
 				self.nodes.append(Node(id,pose))
-			# print(total_nodes)
-			# print(self.nodes)
+
 
 
 		with open(edges, 'r') as e: 
@@ -72,8 +71,7 @@ class graph_slam:
 
 
 				self.edges.append(Edge(src,dest,measurement,infm))
-			# print(total_edges)
-			# print(self.edges)
+
 
 
 
@@ -81,7 +79,7 @@ class graph_slam:
 	def solve(self):
 
 		# assert (self.total_nodes!=[])
-		# print(self.total_nodes)
+
 
 		self.H = np.zeros(shape=(3*self.total_nodes,3*self.total_nodes))
 		self.b = np.zeros(shape =(3*self.total_nodes,1))
@@ -96,10 +94,6 @@ class graph_slam:
 			T_i = graph_slam.pose_to_hm(x_i) 
 			T_j = graph_slam.pose_to_hm(x_j)
 			T_ij = graph_slam.pose_to_hm(e.measurement)
-
-
-			# print("T_ij",T_ij)
-			# break
 
 			R_i = T_i[0:2,0:2]
 			R_ij = T_ij[0:2,0:2] ## relative pose with j with respect to i Rij
@@ -116,24 +110,18 @@ class graph_slam:
 			
 			
 			A_ij = np.vstack((np.hstack((-R_ij.T @ R_i.T , R_ij.T @ dR_i.T @ dt_ij)),np.array([0,0,-1])))
-			# print("A",A_ij)
-			# break
+
 
 			k = np.array([0,0]).T
 			k = np.reshape(k,(2,1))
 
 			B_ij =np.vstack((np.hstack((R_ij.T @ R_i.T , k)),np.array([0,0,1])))
 
-			# print("B",B_ij)
-			# break
-
 			Z_ij = graph_slam.pose_to_hm(e.measurement) #measurements
 
 			e_ij  = graph_slam.hm_to_pose(np.linalg.inv(Z_ij) @ np.linalg.inv(T_i) @ T_j )
 			
 			omega_ij = e.information
-			# print("omega_ij",omega_ij)
-			# break
 			H_ii = A_ij.T @ omega_ij @ A_ij
 			H_ij = A_ij.T @ omega_ij @ B_ij
 			H_ji = B_ij.T @ omega_ij @ A_ij
@@ -154,13 +142,8 @@ class graph_slam:
 
 			self.H[p:q,p:q] +=  H_ii
 			self.H[p:q,r:s] +=  H_ij
-			# self.H[r:s,p:q] +=  H_ji
 			self.H[r:s,p:q]+=  H_ij.T
 			self.H[r:s,r:s] +=  H_jj
-
-
-
-
 			self.b[p:q]   += b_i
 			self.b[r:s]   += b_j
 
@@ -197,21 +180,6 @@ class graph_slam:
 			self.nodes[i].pose += k
 			
 			assert(self.nodes[i].pose.shape == (3,1))
-			# print()				
-			# print("updated_pose", self.nodes[i_node].pose)
-			# break
-
-
-
-
-
-
-
-
-
-
-
-
 
 	## pose to homogeneous cordinates
 	@staticmethod 
@@ -249,18 +217,13 @@ class graph_slam:
 
 			if vis:
 				pylab.clf()
-				#pylab.ion()
 				self.plot()
 				pylab.title('Iteration %d'%(i+1))
-				#pylab.draw()
-				#pylab.ioff()
-				#time.sleep(3)
 				pylab.show()
 
 
 
 def main():
-	print("Hello World!")
 	# g = graph_slam()
 
 	# pose = np.array([[1,2,3.14]])
