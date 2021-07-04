@@ -80,7 +80,7 @@ class graph_slam:
 		"""
 		Minimizing the error amongst the conflicting constraints (edges) on the nodes(poses) of the robot using the algorithm
 		mentioned in the research paper for solving least squares minimization problem. More information about the algorithm can be obtained from the report
-		that is associated with this repository
+		that is associated with this repository link: https://github.com/neilpradhan/2d_pose_graph_SLAM/blob/test_branch/Applied_Estimation_Graph_Slam_Project_Report.pdf
 		"""
 
 		# Initializing the H and b matrices, as both these matrices are mostly sparce,known from their definition
