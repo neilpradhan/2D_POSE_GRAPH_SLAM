@@ -1,6 +1,5 @@
 # 2d_pose_graph_SLAM
 
-....
 ## Table of contents
 * [Abstract](#general-info)
 * [Technologies](#technologies)
