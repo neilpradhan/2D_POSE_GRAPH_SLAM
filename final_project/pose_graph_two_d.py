@@ -12,12 +12,6 @@ import pylab
 import matplotlib.pyplot as plt
 
 
-
-
-
-
-
-
 class graph_slam:
 	""" Initializes the nodes and edges and solves the problem of least squres minimization
 	taking into account the sptial constraints and problem created by conflicting contraints"""
@@ -31,8 +25,6 @@ class graph_slam:
 
 	# get nodes and edges from dataset
 	# make sure one file has only vertices and the other only edges
-
-	
 	def get_from_dataset(self,vertices, edges):
 		"""
 		Input:
@@ -83,14 +75,12 @@ class graph_slam:
 
 
 
-
-
 	def solve(self):
 
 		"""
-		Iteratively minizing the error amongst the conflicting constraints (edges) on the nodes(poses) of the robot using the algorithm
-		mentioned in the research paper for solving least squares minimization problem. More information about the algorithm can be obtained from the report that is associated
-		with this repository
+		Minimizing the error amongst the conflicting constraints (edges) on the nodes(poses) of the robot using the algorithm
+		mentioned in the research paper for solving least squares minimization problem. More information about the algorithm can be obtained from the report
+		that is associated with this repository
 		"""
 
 		# Initializing the H and b matrices, as both these matrices are mostly sparce,known from their definition
@@ -107,7 +97,8 @@ class graph_slam:
 
 			## finding Aij and Bij 
 			
-			# Convert into homogenous coordinates for simplicity in explaining various affine transformations between different poses of the robot 
+			# Convert into homogenous coordinates for simplicity in explaining various affine transformations between different poses of the robot
+			
 			T_i = graph_slam.pose_to_hm(x_i) 
 			T_j = graph_slam.pose_to_hm(x_j)
 			T_ij = graph_slam.pose_to_hm(e.measurement)
@@ -194,10 +185,8 @@ class graph_slam:
 			# print("dx[i_node:i_node+3,1]",np.shape(dx[i_node:i_node+3,0]))
 			k = np.reshape(delta_pose[:,i] , (3,1))
 			self.nodes[i].pose += k
-			
 			assert(self.nodes[i].pose.shape == (3,1))
 
-	## pose to homogeneous cordinates
 	@staticmethod 
 	def pose_to_hm(pose: List[int])->'numpy_array 3 x 3':
 		""" 
@@ -208,8 +197,6 @@ class graph_slam:
 		s = math.sin(pose[2,0])
 		hm  = np.array([[c,-s,pose[0,0]],[s,c,pose[1,0]],[0,0,1]])
 		return hm
-
-
 
 	@staticmethod   
 	def hm_to_pose(hm:'numpy array 3x3')->'numpy array 3x1':
@@ -224,6 +211,10 @@ class graph_slam:
 		return output
 
 	def plot(self):
+		"""
+		Plots x versus y to visualize the map of robot through poses
+		
+		"""
 		X=[each_node.pose[0,0] for each_node in self.nodes] ## all x
 		Y=[each_node.pose[1,0] for each_node in self.nodes] ## all y
 		pylab.plot(X,Y)
@@ -247,14 +238,6 @@ class graph_slam:
 
 
 def main():
-	# g = graph_slam()
-
-	# pose = np.array([[1,2,3.14]])
-
-	# print(pose[0,0])
-	# a = g.pose_to_hm(pose)
-	# print(a)
-
 	# extract vertices and edges seperately
 	vfile='data/intel_vertex.g2o'
 	efile='data/intel_edge.g2o'
