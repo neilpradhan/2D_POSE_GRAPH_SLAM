@@ -1,4 +1,4 @@
-# 2d_pose_graph_SLAM
+# 2D_POSE_GRAPH_SLAM
 
 ## Table of contents
 * [Abstract](#general-info)
