@@ -157,11 +157,7 @@ class graph_slam:
 
 		self.H[0:3,0:3] += np.eye(3) ## fixing only the first index
 
-		H = self.H.copy() ## make a copy
-		
-		# H = np.mat(H)
-		# plt.plot(H)
-		# plt.show()
+		H = self.H.copy() ## make a copy		
 		
 		# we convert it into a data structure that handles operations with sparce matrices in a efficient manner
 		H_sparse=ss.csc_matrix(H)
@@ -181,8 +177,6 @@ class graph_slam:
 
 
 		for i in range(self.total_nodes):
-			# print("self.nodes[i_node].pose",np.shape(self.nodes[i_node].pose))
-			# print("dx[i_node:i_node+3,1]",np.shape(dx[i_node:i_node+3,0]))
 			k = np.reshape(delta_pose[:,i] , (3,1))
 			self.nodes[i].pose += k
 			assert(self.nodes[i].pose.shape == (3,1))
